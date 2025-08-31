@@ -1,0 +1,573 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage[explicit]{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Amin Hasanpour's CV},
+    pdfauthor={Amin Hasanpour},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage[default, type1]{sourcesanspro} 
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\newlength{\twocolrightwidth}
+\setlength{\twocolrightwidth}{4.5cm} % set default length for twocolentry
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Amin Hasanpour - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{
+    % avoid page braking right after the section title
+    \needspace{4\baselineskip}
+    % make the font size of the section title large and color it with the primary color
+    \Large\color{primaryColor}
+}{
+}{
+}{
+    % print bold title, give 0.15 cm space and draw a line of 0.8 pt thickness
+    % from the end of the title to the end of the body
+    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+}[] % section title formatting
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.5 cm % originally 0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+% \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    % Use optional width if given, else default
+    \ifx&#1&%
+        \setlength{\twocolrightwidth}{4.5cm}% default
+    \else
+        \setlength{\twocolrightwidth}{#1}% user-specified
+    \fi
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, \twocolrightwidth}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{twocolentryleftfixed}[1]{
+    \onecolentry
+    \def\firstColumn{#1}
+    \setcolumnwidth{2.5cm, \fill}
+    \begin{paracol}{2}
+    {\raggedright \firstColumn} \switchcolumn
+}{
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries with left fixed
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{1 cm, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in September 2025}\hspace{\widthof{Last updated in September 2025}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \fontsize{30 pt}{30 pt}
+        \textbf{Mohammad Amin Hasanpour}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Denmark}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:m.amin.hasanpour@gmail.com}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}m.amin.hasanpour@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:+4553333146}{{\footnotesize\faPhone*}\hspace*{0.13cm}+45 53 33 31 46}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://people.compute.dtu.dk/moam}{{\footnotesize\faLink}\hspace*{0.13cm}https://people.compute.dtu.dk/moam}}%
+        % \kern 0.25 cm%
+        % \AND%
+        % \kern 0.25 cm%
+        % \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/Black3rror}{{\footnotesize\faLinkedinIn}\hspace*{0.13cm}Black3rror}}%
+        % \kern 0.25 cm%
+        % \AND%
+        % \kern 0.25 cm%
+        % \mbox{\hrefWithoutArrow{https://github.com/Black3rror}{{\footnotesize\faGithub}\hspace*{0.13cm}Black3rror}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+
+    \section{Education}
+        
+        \begin{threecolentry}{Ph.D.}{
+            Lyngby, Denmark\\
+            Jan 2023 – (Jan 2026)
+        }
+            \textbf{Technical University of Denmark (DTU)}\\
+            Applied Mathematics and Computer Science\\
+            Thesis: Embedded Artificial Intelligence (eAI)\\
+            Supervisor: Dr. Xenofon Fafoutis
+        \end{threecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{threecolentry}{M.Sc.}{
+            Tehran, Iran\\
+            Sep 2019 – Sep 2021
+        }
+            \textbf{Sharif University of Technology}\\
+            Electrical Engineering\\
+            Thesis: Improvement of Deep Learning-Based Coding Algorithms\\
+            Supervisor: Dr. Alireza Farhadi\\
+            Cumulative GPA: 4.0/4.0, Thesis grade: Excellent
+        \end{threecolentry}
+        
+        \vspace{0.2 cm}
+        
+        \begin{threecolentry}{B.Sc.}{
+            Tehran, Iran\\
+            Sep 2015 – Sep 2019
+        }
+            \textbf{K. N. Toosi University of Technology}\\
+            Electrical Engineering\\
+            Thesis: Design and Fabrication of an IoT Platform\\
+            Supervisor: Dr. Yousef Darmani\\
+            Cumulative GPA: 3.67/4.0, Thesis grade: Excellent
+        \end{threecolentry}
+
+
+    \section{Domain Expertise}
+        \begin{onecolentry}
+            \textbf{TinyML}, \textbf{Deep Learning}, Machine Learning, Embedded Systems
+        \end{onecolentry}
+
+
+    \section{Skills}
+        
+        \begin{twocolentryleftfixed}{Proficient in}
+            \textbf{Machine Learning, Deep Learning, TensorFlow, Keras, Python, C++}
+        \end{twocolentryleftfixed}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentryleftfixed}{Experienced in}
+            Linux, MATLAB, Java, CUDA, VHDL, Verilog, Circuit design, PCB Design, Android Studio, HTML, CSS, JavaScript, PHP, Assembly, AVR microcontrollers, Arduino programming, GSM modules, ESP8266 programming
+        \end{twocolentryleftfixed}
+
+
+    
+    \section{Publications}
+        
+        \begin{samepage}
+            \begin{twocolentry}[2cm]{
+                % Dec 2025
+            }
+                \textbf{A Survey of Quantization Techniques in Embedded AI Toolchains}
+
+                \vspace{0.10 cm}
+
+                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Xenofon Fafoutis}, \mbox{Manuel Roveri}
+
+                \vspace{0.10 cm}
+
+                Under review at \href{https://www.ieee-aiot.org/2025/index.php}{IEEE AIoT Conference 2025}
+            \end{twocolentry}
+        \end{samepage}
+
+        \vspace{0.2 cm}
+
+
+        \begin{samepage}
+            \begin{twocolentry}[2cm]{
+                Oct 2025
+            }
+                \textbf{EdgeMark: An Automation and Benchmarking System for Embedded Artificial Intelligence Tools}
+
+                \vspace{0.10 cm}
+
+                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Mikkel Kirkegaard}, \mbox{Xenofon Fafoutis}
+
+                \vspace{0.10 cm}
+
+                \href{https://doi.org/10.1016/j.sysarc.2025.103488}{10.1016/j.sysarc.2025.103488}
+            \end{twocolentry}
+        \end{samepage}
+
+        \vspace{0.2 cm}
+
+
+        \begin{samepage}
+            \begin{twocolentry}[2cm]{
+                Dec 2024
+            }
+                \textbf{A Holistic Review of the TinyML Stack for Predictive Maintenance}
+
+                \vspace{0.10 cm}
+
+                \mbox{Emil Njor}, \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Jan Madsen}, \mbox{Xenofon Fafoutis}
+
+                \vspace{0.10 cm}
+
+                \href{https://doi.org/10.1109/ACCESS.2024.3512860}{10.1109/ACCESS.2024.3512860}
+            \end{twocolentry}
+        \end{samepage}
+
+        \vspace{0.2 cm}
+
+
+        \begin{samepage}
+            \begin{twocolentry}[2cm]{
+                Jul 2024
+            }
+                \textbf{Pump Cavitation Detection with Machine Learning: A Comparative Study of SVM and Deep Learning}
+
+                \vspace{0.10 cm}
+
+                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Rasmus Engholm}, \mbox{Xenofon Fafoutis}
+
+                \vspace{0.10 cm}
+
+                \href{https://doi.org/10.1109/AIoT63253.2024.00050}{10.1109/AIoT63253.2024.00050}
+            \end{twocolentry}
+        \end{samepage}
+
+
+
+    \pagebreak
+    
+
+    
+    \section{Selected Projects}
+        
+        \begin{twocolentry}[8cm]{\href{https://github.com/Black3rror/EdgeMark}{GitHub}}
+            \textbf{EdgeMark}
+        \end{twocolentry}
+        \vspace{0.1 cm}
+        \begin{onecolentry}
+            An automation system for generation, conversion, compilation, and testing of models on embedded systems. It currently supports various types of models, four major eAI conversion tools (like TFLM), and two different microcontrollers (ARM Cortex-M4 based and Renesas RX65N). Further, we have conducted an extensive benchmark between these tools, and also their performance in different condition.
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Improvement of Deep Learning-Based Coding Algorithms}\\
+            Decreased network’s parameters count by 40\% without loss in performance.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Cassava leaf disease classification - Kaggle competition}\\
+            As part of the final project of the Deep Learning course. Several network architectures and methods have been employed in this project, including ResNet, Inception-ResNet-v2, VGG16, EfficientNet, CGAN, CycleGAN, data pipelining, test time augmentation, and k-fold cross-validation. Achieved the best performance in the class.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Implementation of MS-VAN for NWPU VHR-10 object detection}\\
+            MS-VAN is an advanced object detection network architecture that uses ideas presented in Faster R-CNN, skip-connected autoencoders, and attention modules.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Generative Adversarial Networks (GANs) adventure}\\
+            Explored different types of GANs. Designed a GAN-based network including LSTM layers to be a composer. Achieved a stable DCGAN network to generate MNIST like images. Studied the architecture of CycleGANs to change the data domain.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Cartpole racing with the help of Reinforcement Learning}\\
+            Developed a policy gradient-based agent to run while balancing a pole in a constructed environment.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Implementation of Deep JSCC image transmission}\\
+            An autoencoder based coding algorithm that outperforms concatenation of JPEG or JPEG2000 compression with a capacity-achieving channel code at certain conditions.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Generating images using different types of AEs}\\
+            Compared performance of simple AE, variational AE (VAE), and Disentangled VAE on the MNIST dataset.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{Design and Fabrication of an IoT Platform}\\
+            Accomplished by designing a gateway and sensor boards, setting a server, and developing an Android application.
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{onecolentry}
+            \textbf{BuyNow}\\
+            Working on the project of the smart store as an intern at HardTech. Upgraded the project to have a local login option. Changed communication protocol from MQTT to HTTP. Developed an auto-update system. Launched a debugging system. Designed a more user-friendly interface.
+        \end{onecolentry}
+
+
+
+    
+    \section{Teaching Experience}
+        
+        \begin{twocolentry}{Sep 2023 - Nov 2023}
+            Teaching Assistant of Deep Learning\\
+            Instructor: Dr. Jes Frellsen
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Sep 2021 - Jan 2022}
+            Teaching Assistant of Deep Learning\\
+            Instructor: Dr. Emad Fatemizadeh
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Jan 2025}
+            Teaching Assistant of MLOps\\
+            Instructor: Dr. Nicki Skafte Detlefsen
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Sep 2023 - Nov 2024}
+            Teaching Assistant of Operating Systems\\
+            Instructor: Dr. Xenofon Fafoutis
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Jan 2021 - Jul 2021}
+            Teaching Assistant of Parallel Programming and Architectures\\
+            Instructor: Dr. Matin Hashemi
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Jan 2021 - Jul 2021}
+            Teaching Assistant of Medical Image Analysis and Processing\\
+            Instructor: Dr. Emad Fatemizadeh
+        \end{twocolentry}
+
+
+
+    \section{Selected Courses}
+
+
+        \begin{twocolentry}{Grade: 4.0/4.0}
+            Deep Learning - Sharif UoT
+        \end{twocolentry}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Grade: 4.0/4.0}
+            Machine Learning Operations - DTU
+        \end{twocolentry}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Grade: 100/100}
+            Deep Learning Specialization - deeplearning.ai on Coursera
+        \end{twocolentry}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{Grade: 4.0/4.0}
+            Neural Networks - Sharif UoT
+        \end{twocolentry}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{N/A}
+            Data Pipelines with TensorFlow Data Services - Coursera
+        \end{twocolentry}
+
+
+
+    \section{Achievements and Awards}
+
+        \begin{onecolentry}
+            \begin{highlightsforbulletentries}
+
+                \item Awarded funding to present research at IEEE conference in AIoT (2024, Melbourne)\\
+                {\small Otto Mønsteds Fond}
+
+                \item Ranked 3rd in the nationwide entrance examination of electronics master studies\\
+                {\small Iran’s national organization of educational testing. Among ~15000 participants}
+
+                \item Second place in the Pooyesh Nasir tournament\\
+                {\small Department of Electrical Engineering, K. N. Toosi University of Technology}
+
+                \item Nominated for the best bachelor project\\
+                {\small Department of Electrical Engineering, K. N. Toosi University of Technology}
+
+            \end{highlightsforbulletentries}
+        \end{onecolentry}
+
+
+
+    \section{Language Skills}
+
+        \begin{onecolentry}
+            Persian: Native\\
+            English
+        \end{onecolentry}
+
+    
+
+\end{document}
