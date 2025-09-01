@@ -3,11 +3,11 @@
 % Packages:
 \usepackage[
     ignoreheadfoot, % set margins without considering header and footer
-    top=2 cm, % seperation between body and page edge from the top
-    bottom=2 cm, % seperation between body and page edge from the bottom
-    left=2 cm, % seperation between body and page edge from the left
-    right=2 cm, % seperation between body and page edge from the right
-    footskip=1.0 cm, % seperation between body and footer
+    top=2 cm, % separation between body and page edge from the top
+    bottom=2 cm, % separation between body and page edge from the bottom
+    left=2 cm, % separation between body and page edge from the left
+    right=2 cm, % separation between body and page edge from the right
+    footskip=1.0 cm, % separation between body and footer
     % showframe % for debugging 
 ]{geometry} % for adjusting page geometry
 \usepackage[explicit]{titlesec} % for customizing section titles
@@ -35,7 +35,7 @@
 \usepackage{needspace} % for avoiding page brake right after the section title
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
 
-% Ensure that generate pdf is machine readable/ATS parsable:
+% Ensure that generated PDF is machine-readable/ATS-parsable:
 \ifPDFTeX
     \input{glyphtounicode}
     \pdfgentounicode=1
@@ -52,7 +52,7 @@
 \setcounter{secnumdepth}{0} % no section numbering
 \setlength{\parindent}{0pt} % no indentation
 \setlength{\topskip}{0pt} % no top skip
-\setlength{\columnsep}{0.15cm} % set column seperation
+\setlength{\columnsep}{0.15cm} % set column separation
 \newlength{\twocolrightwidth}
 \setlength{\twocolrightwidth}{4.5cm} % set default length for twocolentry
 \makeatletter
@@ -64,7 +64,7 @@
 \pagestyle{customFooterStyle}
 
 \titleformat{\section}{
-    % avoid page braking right after the section title
+    % avoid page break right after the section title
     \needspace{4\baselineskip}
     % make the font size of the section title large and color it with the primary color
     \Large\color{primaryColor}
@@ -377,7 +377,7 @@
         \end{twocolentry}
         \vspace{0.1 cm}
         \begin{onecolentry}
-            An automation system for generation, conversion, compilation, and testing of models on embedded systems. It currently supports various types of models, four major eAI conversion tools (like TFLM), and two different microcontrollers (ARM Cortex-M4 based and Renesas RX65N). Further, we have conducted an extensive benchmark between these tools, and also their performance in different condition.
+            An automation system for generation, conversion, compilation, and testing of models on embedded systems. It currently supports various types of models, four major eAI conversion tools (like TFLM), and two different microcontrollers (ARM Cortex-M4-based and Renesas RX65N). Further, we have conducted an extensive benchmark between these tools, and also their performance in different conditions.
         \end{onecolentry}
 
         \vspace{0.2 cm}
@@ -429,7 +429,7 @@
         
         \begin{onecolentry}
             \textbf{Implementation of Deep JSCC image transmission}\\
-            An autoencoder based coding algorithm that outperforms concatenation of JPEG or JPEG2000 compression with a capacity-achieving channel code at certain conditions.
+            An autoencoder-based coding algorithm that outperforms concatenation of JPEG or JPEG2000 compression with a capacity-achieving channel code at certain conditions.
         \end{onecolentry}
 
 
