@@ -34,6 +34,7 @@
 \usepackage{ifthen} % for conditional statements
 \usepackage{needspace} % for avoiding page brake right after the section title
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+\usepackage{etoolbox} % provides \patchcmd and related patching macros used below
 
 % Ensure that generated PDF is machine-readable/ATS-parsable:
 \ifPDFTeX
@@ -171,14 +172,14 @@
 } % new environment for the header
 
 \newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-    \put(
-        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
-        \LenToUnit{\paperheight-1.0 cm}
-    ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in September 2025}\hspace{\widthof{Last updated in September 2025}}
-    }}}%
-  }%
+    \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+        \put(
+            \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+            \LenToUnit{\paperheight-1.0 cm}
+        ){\vtop{{\null}\makebox[0pt][c]{
+            \small\color{gray}\textit{Last updated in September 2025}\hspace{\widthof{Last updated in September 2025}}
+        }}}%
+    }%
 }%
 
 % save the original href command in a new command:
@@ -198,8 +199,8 @@
 
     \placelastupdatedtext
     \begin{header}
-        \fontsize{30 pt}{30 pt}
-        \textbf{Mohammad Amin Hasanpour}
+    \fontsize{30 pt}{30 pt}
+    	\textbf{Mohammad Amin Hasanpour}
 
         \vspace{0.3 cm}
 
