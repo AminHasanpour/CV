@@ -89,13 +89,9 @@
     0.2 cm
 } % section title spacing
 
-\newtoggle{projectbullets}
-\toggletrue{projectbullets}  % use bullet points for projects' description
-% \togglefalse{projectbullets} % use plain text for projects' description
-
-\newtoggle{teachingbullets}
-% \toggletrue{teachingbullets}  % use bullet points for Teaching Experience section
-\togglefalse{teachingbullets} % use plain text for Teaching Experience section
+\newcommand{\skillsmode}{compact} % options: "compact", "expanded"
+\newcommand{\projectmode}{bullet} % options: "text", "bullet"
+\newcommand{\teachingmode}{expanded} % options: "supercompact", "compact", "expanded"
 
 % \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
 \newenvironment{highlights}{
@@ -165,7 +161,7 @@
 \newenvironment{threecolentry}[3][]{
     \onecolentry
     \def\thirdColumn{#3}
-    \setcolumnwidth{1 cm, \fill, 4.5 cm}
+    \setcolumnwidth{1.2 cm, \fill, 4.5 cm}
     \begin{paracol}{3}
     {\raggedright #2} \switchcolumn
 }{
@@ -305,32 +301,111 @@
 
     \section{Domain Expertise}
         \begin{onecolentry}
-            \textbf{TinyML}, \textbf{Deep Learning}, Machine Learning, Embedded Systems
+            \textbf{TinyML},
+            \textbf{Deep Learning},
+            Machine Learning,
+            Embedded Systems
         \end{onecolentry}
 
 
     \section{Skills}
         
         \begin{twocolentryleftfixed}{Proficient in}
-            \textbf{Machine Learning, Deep Learning, TensorFlow, Keras, Python, C++}
+            \textbf{%
+                % Machine Learning,
+                % Deep Learning,
+                TensorFlow,
+                Keras,
+                Python,
+                C++
+            }
         \end{twocolentryleftfixed}
         
         \vspace{0.2 cm}
 
         \begin{twocolentryleftfixed}{Experienced in}
-            % \begin{highlightsforbulletentries}
+            \ifdefstring{\skillsmode}{compact}{
                 \textbf{Software}:
-                % \item \textbf{Software \& Tools}:
-                PyTorch, ONNX, Git, Conda, Hydra, Docker, DVC, Pytest, FastAPI, Linux, Android Studio,
-                % \item \textbf{Programming \& Scripting}:
-                Java, MATLAB, CUDA, Assembly,
-                % \item \textbf{Web Development}:
-                HTML, CSS, JavaScript, PHP, Mkdocs
+                PyTorch,
+                ONNX,
+                Git,
+                Conda,
+                Hydra,
+                Docker,
+                DVC,
+                Pytest,
+                FastAPI,
+                Linux,
+                Android Studio,
+                Java,
+                MATLAB,
+                CUDA,
+                Assembly,
+                HTML,
+                CSS,
+                JavaScript,
+                PHP,
+                Mkdocs
+
+                \vspace{0.1 cm}
             
                 \textbf{Hardware}:
-                % \item \textbf{Hardware \& Embedded Systems}:
-                VHDL, Verilog, AVR microcontrollers, STM32 programming, Arduino programming, ESP8266 programming, GSM modules, circuit design, PCB design
-            % \end{highlightsforbulletentries}
+                VHDL,
+                Verilog,
+                AVR microcontrollers,
+                STM32 programming,
+                Arduino programming,
+                ESP8266 programming,
+                GSM modules,
+                circuit design,
+                PCB design
+            }{}
+
+
+            \ifdefstring{\skillsmode}{expanded}{
+                \textbf{Software \& Tools}:
+                    PyTorch,
+                    ONNX,
+                    Git,
+                    Conda,
+                    Hydra,
+                    Docker,
+                    DVC,
+                    Pytest,
+                    FastAPI,
+                    Linux%,
+                    % Android Studio
+                
+                    \vspace{0.1 cm}
+                
+                    \textbf{Programming \& Scripting}:
+                    Java,
+                    MATLAB,
+                    CUDA,
+                    Assembly
+                
+                    \vspace{0.1 cm}
+                
+                    \textbf{Web Development}:
+                    HTML,
+                    CSS,
+                    JavaScript,
+                    PHP,
+                    Mkdocs
+                
+                    \vspace{0.1 cm}
+                
+                    \textbf{Hardware \& Embedded Systems}:
+                    VHDL,
+                    Verilog,
+                    AVR microcontrollers,
+                    STM32 programming,
+                    Arduino programming,
+                    ESP8266 programming,
+                    GSM modules,
+                    circuit design,
+                    PCB design
+            }{}
         \end{twocolentryleftfixed}
 
 
@@ -422,7 +497,7 @@
             \textbf{EdgeMark}
         \end{twocolentry}
         \begin{onecolentry}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Developed an automation system to generate, convert, compile, and test models on embedded devices.
                     \item Supported multiple model types, four eAI tools (e.g., TFLM), and two microcontrollers (Cortex-M4, RX65N).
@@ -439,7 +514,7 @@
             \textbf{Cavitation Detection in Centrifugal Pumps}
         \end{twocolentry}
         \begin{onecolentry}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Implemented and benchmarked SVM vs. deep learning approaches on real industrial data.
                     \item Optimized models for deployment on embedded hardware.
@@ -453,7 +528,7 @@
 
         \begin{onecolentry}
             \textbf{Improvement of Deep Learning-Based Coding Algorithms}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Reduced network parameter count by 40\% without compromising performance.
                     \item Designed improved architectures for deep learning-based coding.
@@ -469,7 +544,7 @@
         
         \begin{onecolentry}
             \textbf{Cassava Leaf Disease Classification - Kaggle Competition}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Applied architectures including ResNet, Inception-ResNet-v2, VGG16, and EfficientNet.
                     \item Applied CycleGAN, CGAN, data pipelines, test-time augmentation, and k-fold cross-validation.
@@ -486,7 +561,7 @@
         
         \begin{onecolentry}
             \textbf{Implementation of MS-VAN for NWPU VHR-10 Object Detection}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Built MS-VAN model integrating Faster R-CNN, skip-connected autoencoders, and attention modules.
                     \item Evaluated performance on high-resolution object detection tasks.
@@ -502,7 +577,7 @@
         
         \begin{onecolentry}
             \textbf{Generative Adversarial Networks (GANs) Adventure}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Explored multiple GAN variants including DCGAN, CycleGAN, and LSTM-based GAN architectures.
                     \item Designed and trained a music-composer GAN using LSTM layers.
@@ -519,7 +594,7 @@
         
         \begin{onecolentry}
             \textbf{Cartpole Racing with Reinforcement Learning}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Built a reinforcement learning agent using policy gradient methods.
                     \item Trained the agent to balance a pole and race in a custom environment.
@@ -535,7 +610,7 @@
         
         \begin{onecolentry}
             \textbf{Implementation of Deep JSCC Image Transmission}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Developed an autoencoder-based joint source-channel coding (JSCC) method for image transmission.
                     \item Outperformed traditional JPEG/JPEG2000 + channel coding under specific conditions.
@@ -551,7 +626,7 @@
         
         \begin{onecolentry}
             \textbf{Generating Images Using Autoencoders}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Compared performance of simple autoencoders, VAEs, and disentangled VAEs.
                     \item Conducted experiments on the MNIST dataset to analyze the performances of different models.
@@ -569,7 +644,7 @@
             \textbf{Design and Fabrication of an IoT Platform}
         \end{twocolentry}
         \begin{onecolentry}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Designed and fabricated gateway and sensor boards with PCB design and circuit integration.
                     \item Configured a backend server to collect IoT data.
@@ -588,7 +663,7 @@
             \textbf{BuyNow - Smart Store (Internship at HardTech)}
         \end{twocolentry}
         \begin{onecolentry}
-            \iftoggle{projectbullets}{
+            \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Implemented local login option and improved system security.
                     \item Migrated communication protocol from MQTT to HTTP.
@@ -604,8 +679,35 @@
     
     \section{Teaching Experience}
 
-    
-        \iftoggle{teachingbullets}{
+
+
+        \ifdefstring{\teachingmode}{supercompact}{
+            \begin{highlightsforbulletentries}
+                \item \textbf{Supervised}: 1 M.Sc. Thesis, 3 Special Courses
+                \item \textbf{Teaching Assistant}: Deep Learning (Sharif \& DTU), MLOps, Operating Systems, etc.
+            \end{highlightsforbulletentries}
+        }{}
+
+
+        \ifdefstring{\teachingmode}{compact}{
+            \begin{onecolentry}
+                \textbf{Master Thesis Supervision}\\
+                Neural Architecture Generation for Edge AI (DTU, 2025, Student: William Diedrichsen Marstrand)
+
+                \vspace{0.2 cm}
+
+                \textbf{Special Course Supervision}\\
+                Neural Network Architecture for Resource Constrained Hardware (DTU, 2024), TinyML - Efficient Machine Learning for Embedded AI Systems (DTU, 2024), Embedded Programming for Benchmarking Embedded AI Models (DTU, 2024)
+
+                \vspace{0.2 cm}
+
+                \textbf{Teaching Assistant}\\
+                Deep Learning (Sharif, 2021; DTU, 2023), MLOps (DTU, 2025), Operating Systems (DTU, 2023/2024), Parallel Programming and Architectures (Sharif, 2021), Medical Image Analysis and Processing (Sharif, 2021)
+            \end{onecolentry}
+        }{}    
+
+
+        \ifdefstring{\teachingmode}{expanded}{
             \begin{twocolentry}[3.3 cm]{Jan 2025 - Jun 2025}
                 Master Thesis Supervision: Neural Architecture Generation for Edge AI\\
                 Student: William Diedrichsen Marstrand
@@ -673,25 +775,7 @@
                 Teaching Assistant: Medical Image Analysis and Processing\\
                 Instructor: Dr. Emad Fatemizadeh
             \end{twocolentry}
-        }{
-
-
-
-            \begin{onecolentry}
-                \textbf{Master Thesis Supervision}\\
-                Neural Architecture Generation for Edge AI (DTU, 2025, Student: William Diedrichsen Marstrand)
-
-                \vspace{0.2 cm}
-
-                \textbf{Special Course Supervision}\\
-                Neural Network Architecture for Resource Constrained Hardware (DTU, 2024), TinyML - Efficient Machine Learning for Embedded AI Systems (DTU, 2024), Embedded Programming for Benchmarking Embedded AI Models (DTU, 2024)
-
-                \vspace{0.2 cm}
-
-                \textbf{Teaching Assistant}\\
-                Deep Learning (Sharif, 2021; DTU, 2023), MLOps (DTU, 2025), Operating Systems (DTU, 2023/2024), Parallel Programming and Architectures (Sharif, 2021), Medical Image Analysis and Processing (Sharif, 2021)
-            \end{onecolentry}
-        }
+        }{}
 
 
 
