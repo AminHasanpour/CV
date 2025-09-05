@@ -92,6 +92,10 @@
 \toggletrue{projectbullets}  % use bullet points for projects' description
 % \togglefalse{projectbullets} % use plain text for projects' description
 
+\newtoggle{teachingbullets}
+% \toggletrue{teachingbullets}  % use bullet points for Teaching Experience section
+\togglefalse{teachingbullets} % use plain text for Teaching Experience section
+
 % \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
 \newenvironment{highlights}{
     \begin{itemize}[
@@ -263,7 +267,7 @@
         
         \begin{threecolentry}{Ph.D.}{
             Lyngby, Denmark\\
-            Jan 2023 – (Jan 2026)
+            Jan 2023 - (Jan 2026)
         }
             \textbf{Technical University of Denmark (DTU)}\\
             Applied Mathematics and Computer Science\\
@@ -275,7 +279,7 @@
         
         \begin{threecolentry}{M.Sc.}{
             Tehran, Iran\\
-            Sep 2019 – Sep 2021
+            Sep 2019 - Sep 2021
         }
             \textbf{Sharif University of Technology}\\
             Electrical Engineering\\
@@ -288,7 +292,7 @@
         
         \begin{threecolentry}{B.Sc.}{
             Tehran, Iran\\
-            Sep 2015 – Sep 2019
+            Sep 2015 - Sep 2019
         }
             \textbf{K. N. Toosi University of Technology}\\
             Electrical Engineering\\
@@ -532,11 +536,11 @@
             \textbf{Implementation of Deep JSCC Image Transmission}
             \iftoggle{projectbullets}{
                 \begin{highlights}
-                    \item Developed an autoencoder-based joint source–channel coding (JSCC) method for image transmission.
+                    \item Developed an autoencoder-based joint source-channel coding (JSCC) method for image transmission.
                     \item Outperformed traditional JPEG/JPEG2000 + channel coding under specific conditions.
                 \end{highlights}
             }{
-                \\Created an autoencoder-based joint source–channel coding (JSCC) algorithm for image transmission. Outperformed JPEG/JPEG2000 combined with a capacity-achieving channel coding under certain conditions.
+                \\Created an autoencoder-based joint source-channel coding (JSCC) algorithm for image transmission. Outperformed JPEG/JPEG2000 combined with a capacity-achieving channel coding under certain conditions.
             }
         \end{onecolentry}
 
@@ -598,46 +602,95 @@
 
     
     \section{Teaching Experience}
-        
-        \begin{twocolentry}{Sep 2023 - Nov 2023}
-            Teaching Assistant of Deep Learning\\
-            Instructor: Dr. Jes Frellsen
-        \end{twocolentry}
 
-        \vspace{0.2 cm}
+    
+        \iftoggle{teachingbullets}{
+            \begin{twocolentry}[3.3 cm]{Jan 2025 - Jun 2025}
+                Master Thesis Supervision: Neural Architecture Generation for Edge AI\\
+                Student: William Diedrichsen Marstrand
+            \end{twocolentry}
+            
+            \vspace{0.2 cm}
 
-        \begin{twocolentry}{Sep 2021 - Jan 2022}
-            Teaching Assistant of Deep Learning\\
-            Instructor: Dr. Emad Fatemizadeh
-        \end{twocolentry}
+            \begin{twocolentry}[3.3 cm]{Oct 2024 - Dec 2024}
+                Special Course Supervision: Neural Network Architecture for Resource Constrained Hardware\\
+                Student: William Diedrichsen Marstrand
+            \end{twocolentry}
+            
+            \vspace{0.2 cm}
 
-        \vspace{0.2 cm}
+            \begin{twocolentry}[3.3 cm]{Jun 2024}
+                Special Course Supervision: TinyML - Efficient Machine Learning for Embedded AI Systems\\
+                Student: William Diedrichsen Marstrand
+            \end{twocolentry}
+            
+            \vspace{0.2 cm}
+            
+            \begin{twocolentry}[3.3 cm]{Feb 2024 - May 2024}
+                Special Course Supervision: Embedded Programming for Benchmarking Embedded AI Models\\
+                Student: Simon Kristoffer Janum
+            \end{twocolentry}
+            
+            \vspace{0.2 cm}
+            
+            \begin{twocolentry}{Sep 2023 - Nov 2023}
+                Teaching Assistant: Deep Learning\\
+                Instructor: Dr. Jes Frellsen
+            \end{twocolentry}
 
-        \begin{twocolentry}{Jan 2025}
-            Teaching Assistant of MLOps\\
-            Instructor: Dr. Nicki Skafte Detlefsen
-        \end{twocolentry}
+            \vspace{0.2 cm}
 
-        \vspace{0.2 cm}
+            \begin{twocolentry}{Sep 2021 - Jan 2022}
+                Teaching Assistant: Deep Learning\\
+                Instructor: Dr. Emad Fatemizadeh
+            \end{twocolentry}
 
-        \begin{twocolentry}{Sep 2023 - Nov 2024}
-            Teaching Assistant of Operating Systems\\
-            Instructor: Dr. Xenofon Fafoutis
-        \end{twocolentry}
+            \vspace{0.2 cm}
 
-        \vspace{0.2 cm}
+            \begin{twocolentry}{Jan 2025}
+                Teaching Assistant: MLOps\\
+                Instructor: Dr. Nicki Skafte Detlefsen
+            \end{twocolentry}
 
-        \begin{twocolentry}{Jan 2021 - Jul 2021}
-            Teaching Assistant of Parallel Programming and Architectures\\
-            Instructor: Dr. Matin Hashemi
-        \end{twocolentry}
+            \vspace{0.2 cm}
 
-        \vspace{0.2 cm}
+            \begin{twocolentry}[5 cm]{Sep-Nov 2023, 2024}
+                Teaching Assistant: Operating Systems\\
+                Instructor: Dr. Xenofon Fafoutis
+            \end{twocolentry}
 
-        \begin{twocolentry}{Jan 2021 - Jul 2021}
-            Teaching Assistant of Medical Image Analysis and Processing\\
-            Instructor: Dr. Emad Fatemizadeh
-        \end{twocolentry}
+            \vspace{0.2 cm}
+
+            \begin{twocolentry}{Jan 2021 - Jul 2021}
+                Teaching Assistant: Parallel Programming and Architectures\\
+                Instructor: Dr. Matin Hashemi
+            \end{twocolentry}
+
+            \vspace{0.2 cm}
+
+            \begin{twocolentry}{Jan 2021 - Jul 2021}
+                Teaching Assistant: Medical Image Analysis and Processing\\
+                Instructor: Dr. Emad Fatemizadeh
+            \end{twocolentry}
+        }{
+
+
+
+            \begin{onecolentry}
+                \textbf{Master Thesis Supervision}\\
+                Neural Architecture Generation for Edge AI (DTU, 2025, Student: William Diedrichsen Marstrand)
+
+                \vspace{0.2 cm}
+
+                \textbf{Special Course Supervision}\\
+                Neural Network Architecture for Resource Constrained Hardware (DTU, 2024), TinyML - Efficient Machine Learning for Embedded AI Systems (DTU, 2024), Embedded Programming for Benchmarking Embedded AI Models (DTU, 2024)
+
+                \vspace{0.2 cm}
+
+                \textbf{Teaching Assistant}\\
+                Deep Learning (Sharif, 2021; DTU, 2023), MLOps (DTU, 2025), Operating Systems (DTU, 2023/2024), Parallel Programming and Architectures (Sharif, 2021), Medical Image Analysis and Processing (Sharif, 2021)
+            \end{onecolentry}
+        }
 
 
 
@@ -683,7 +736,7 @@
                 {\small Otto Mønsteds Fond}
 
                 \item Ranked 3rd in the nationwide entrance examination of electronics master studies\\
-                {\small Iran’s national organization of educational testing. Among ~15000 participants}
+                {\small Iran's national organization of educational testing. Among ~15000 participants}
 
                 \item Second place in the Pooyesh Nasir tournament\\
                 {\small Department of Electrical Engineering, K. N. Toosi University of Technology}
