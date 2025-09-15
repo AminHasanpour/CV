@@ -89,6 +89,7 @@
     0.2 cm
 } % section title spacing
 
+\newcommand{\summarymode}{hybrid} % options: "none", "academic", "academicshort", "industry", "industryshort", "hybrid", "hybridshort"
 \newcommand{\skillsmode}{compact} % options: "compact", "expanded"
 \newcommand{\projectmode}{bullet} % options: "text", "bullet"
 \newcommand{\teachingmode}{expanded} % options: "supercompact", "compact", "expanded"
@@ -207,7 +208,7 @@
     \fontsize{30 pt}{30 pt}
     	\textbf{Mohammad Amin Hasanpour}
 
-        \vspace{0.3 cm}
+        \vspace{0.1 cm}
 
         \normalsize
         \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Denmark}%
@@ -233,31 +234,42 @@
         % \mbox{\hrefWithoutArrow{https://github.com/Black3rror}{{\footnotesize\faGithub}\hspace*{0.13cm}Black3rror}}%
     \end{header}
 
-    % \vspace{0.5 cm}
 
-    % % Summary
-    % \begin{onecolentry}
-    %     % >> academic
-    %     % Ph.D. candidate in Applied Mathematics and Computer Science at the Technical University of Denmark, specializing in \textbf{Embedded Artificial Intelligence (eAI) and TinyML}. Experienced in developing machine learning algorithms for \textbf{resource-constrained embedded systems} with a strong publication record in international venues. Skilled in \textbf{deep learning, benchmarking frameworks, and model optimization}, with a proven ability to bridge theory and practice in real-world applications. Passionate about advancing efficient AI for the next generation of IoT and cyber-physical systems.
-        
-    %     % >> academic (short)
-    %     % Ph.D. candidate at DTU specializing in \textit{Embedded AI and TinyML}, with publications on model optimization and benchmarking for resource-constrained systems.
-        
-    %     % >> industrial
-    %     Machine Learning researcher with expertise in \textbf{TinyML, embedded systems, and deep learning}. Experienced in building and benchmarking \textbf{AI models on microcontrollers} and developing end-to-end automation pipelines. Proficient in Python, C++, and TensorFlow, with a track record of impactful projects and publications. Interested in \textbf{bringing state-of-the-art AI to edge devices} for applications in predictive maintenance, IoT, and intelligent automation.
-        
-    %     % >> industrial (short)
-    %     % Machine Learning researcher with expertise in \textbf{deep learning, embedded systems, and TinyML}, developing efficient AI solutions for edge and IoT devices.
-        
-    %     % >> hybrid
-    %     % Ph.D. researcher at DTU working on \textbf{Embedded Artificial Intelligence (eAI)} with a focus on \textbf{quantization techniques, benchmarking, and TinyML frameworks}. Published in peer-reviewed venues and contributed to open-source projects \textbf{bridging deep learning and embedded systems}. Experienced in teaching, collaborative research, and leading technical projects. Motivated to contribute to both academia and industry by making \textbf{AI more efficient, scalable, and deployable on edge devices}.
-        
-    %     % >> hybrid (short)
-    %     % Researcher in \textbf{Embedded Artificial Intelligence (eAI)} with strong experience in \textit{deep learning, quantization, and benchmarking}, bridging theory and real-world applications.
-    % \end{onecolentry}
 
-    
-    \vspace{0.3 cm - 0.3 cm}
+    % Summary
+    \ifdefstring{\summarymode}{none}{}{
+        \vspace{0.3 cm}
+
+        \begin{onecolentry}
+    }
+        \ifdefstring{\summarymode}{academic}{
+            Ph.D. candidate at DTU Compute, specializing in \textbf{Embedded Artificial Intelligence (eAI) and TinyML}. Experienced in developing machine learning algorithms for \textbf{resource-constrained embedded systems} with a strong publication record in international venues. Skilled in \textbf{deep learning, benchmarking frameworks, and model optimization}, with a proven ability to bridge theory and practice in real-world applications. Passionate about advancing efficient AI for the next generation of IoT and cyber-physical systems.
+        }{}
+        
+        \ifdefstring{\summarymode}{academicshort}{
+            Ph.D. candidate at DTU specializing in \textit{Embedded AI and TinyML}, with publications on model optimization and benchmarking for resource-constrained systems.
+        }{}
+        
+        \ifdefstring{\summarymode}{industry}{
+            Machine Learning researcher with expertise in \textbf{TinyML, deep learning, and embedded systems}. Experienced in building and benchmarking \textbf{AI models on microcontrollers} and developing end-to-end automation pipelines. Proficient in Python, C++, and TensorFlow, with a track record of impactful projects and publications. Interested in \textbf{bringing state-of-the-art AI to edge devices} for applications in predictive maintenance, IoT, and intelligent automation.
+        }{}
+        
+        \ifdefstring{\summarymode}{industryshort}{
+            Machine Learning researcher with expertise in \textbf{TinyML, deep learning, and embedded systems}, developing efficient AI solutions for edge and IoT devices.
+        }{}
+        
+        \ifdefstring{\summarymode}{hybrid}{
+            Ph.D. researcher at DTU working on \textbf{Embedded Artificial Intelligence (eAI)} with a focus on \textbf{TinyML frameworks, benchmarking, and quantization techniques}. Published in peer-reviewed venues and contributed to open-source projects \textbf{bridging deep learning and embedded systems}. Experienced in teaching, collaborative research, and leading technical projects. Motivated to contribute to both academia and industry by making \textbf{AI more efficient, scalable, and deployable on edge devices}.
+        }{}
+        
+        \ifdefstring{\summarymode}{hybridshort}{
+            Researcher in \textbf{Embedded Artificial Intelligence (eAI)} with strong experience in \textit{deep learning, quantization, and benchmarking}, bridging theory and real-world applications.
+        }{}
+    \ifdefstring{\summarymode}{none}{}{
+        \end{onecolentry}
+    }
+
+
 
 
     \section{Education}
@@ -412,78 +424,74 @@
     
     \section{Publications}
         
-        \begin{samepage}
-            \begin{twocolentry}[2cm]{
-                % Dec 2025
-            }
-                \textbf{A Survey of Quantization Techniques in Embedded AI Toolchains}
+        \needspace{3\baselineskip}
+        \begin{twocolentry}[2cm]{
+            (Dec 2025)
+        }
+            \textbf{A Survey of Quantization Techniques in Embedded AI Toolchains}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Xenofon Fafoutis}, \mbox{Manuel Roveri}
+            \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Xenofon Fafoutis}, \mbox{Manuel Roveri}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                Under review at \href{https://www.ieee-aiot.org/2025/index.php}{IEEE AIoT Conference 2025}
-            \end{twocolentry}
-        \end{samepage}
-
-        \vspace{0.2 cm}
-
-
-        \begin{samepage}
-            \begin{twocolentry}[2cm]{
-                Oct 2025
-            }
-                \textbf{EdgeMark: An Automation and Benchmarking System for Embedded Artificial Intelligence Tools}
-
-                \vspace{0.10 cm}
-
-                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Mikkel Kirkegaard}, \mbox{Xenofon Fafoutis}
-
-                \vspace{0.10 cm}
-
-                \href{https://doi.org/10.1016/j.sysarc.2025.103488}{10.1016/j.sysarc.2025.103488}
-            \end{twocolentry}
-        \end{samepage}
+            Under review at \href{https://www.ieee-aiot.org/2025/index.php}{IEEE AIoT Conference 2025}
+        \end{twocolentry}
 
         \vspace{0.2 cm}
 
 
-        \begin{samepage}
-            \begin{twocolentry}[2cm]{
-                Dec 2024
-            }
-                \textbf{A Holistic Review of the TinyML Stack for Predictive Maintenance}
+        \needspace{3\baselineskip}
+        \begin{twocolentry}[2cm]{
+            Oct 2025
+        }
+            \textbf{EdgeMark: An Automation and Benchmarking System for Embedded Artificial Intelligence Tools}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                \mbox{Emil Njor}, \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Jan Madsen}, \mbox{Xenofon Fafoutis}
+            \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Mikkel Kirkegaard}, \mbox{Xenofon Fafoutis}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                \href{https://doi.org/10.1109/ACCESS.2024.3512860}{10.1109/ACCESS.2024.3512860}
-            \end{twocolentry}
-        \end{samepage}
+            \href{https://doi.org/10.1016/j.sysarc.2025.103488}{10.1016/j.sysarc.2025.103488}
+        \end{twocolentry}
 
         \vspace{0.2 cm}
 
 
-        \begin{samepage}
-            \begin{twocolentry}[2cm]{
-                Jul 2024
-            }
-                \textbf{Pump Cavitation Detection with Machine Learning: A Comparative Study of SVM and Deep Learning}
+        \needspace{3\baselineskip}
+        \begin{twocolentry}[2cm]{
+            Dec 2024
+        }
+            \textbf{A Holistic Review of the TinyML Stack for Predictive Maintenance}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Rasmus Engholm}, \mbox{Xenofon Fafoutis}
+            \mbox{Emil Njor}, \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Jan Madsen}, \mbox{Xenofon Fafoutis}
 
-                \vspace{0.10 cm}
+            \vspace{0.10 cm}
 
-                \href{https://doi.org/10.1109/AIoT63253.2024.00050}{10.1109/AIoT63253.2024.00050}
-            \end{twocolentry}
-        \end{samepage}
+            \href{https://doi.org/10.1109/ACCESS.2024.3512860}{10.1109/ACCESS.2024.3512860}
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+
+        \needspace{3\baselineskip}
+        \begin{twocolentry}[2cm]{
+            Jul 2024
+        }
+            \textbf{Pump Cavitation Detection with Machine Learning: A Comparative Study of SVM and Deep Learning}
+
+            \vspace{0.10 cm}
+
+            \mbox{\textbf{\textit{M.Amin Hasanpour}}}, \mbox{Rasmus Engholm}, \mbox{Xenofon Fafoutis}
+
+            \vspace{0.10 cm}
+
+            \href{https://doi.org/10.1109/AIoT63253.2024.00050}{10.1109/AIoT63253.2024.00050}
+        \end{twocolentry}
 
 
 
@@ -629,7 +637,7 @@
             \ifdefstring{\projectmode}{bullet}{
                 \begin{highlights}
                     \item Compared performance of simple autoencoders, VAEs, and disentangled VAEs.
-                    \item Conducted experiments on the MNIST dataset to analyze the performances of different models.
+                    \item Conducted experiments on the MNIST dataset to analyze the performance of different models.
                 \end{highlights}
             }{
                 \\Compared simple autoencoders, VAEs, and disentangled VAEs on MNIST to evaluate their generative performance.
