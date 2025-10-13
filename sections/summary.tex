@@ -1,0 +1,35 @@
+% ======================================================================
+% SUMMARY SECTION
+% ======================================================================
+
+\ifdefstring{\summarymode}{none}{}{
+    \vspace{0.3 cm}
+
+    \begin{onecolentry}
+}
+    \ifdefstring{\summarymode}{academic}{
+        Ph.D. candidate at DTU Compute, specializing in \textbf{Embedded Artificial Intelligence (eAI) and TinyML}. Experienced in developing machine learning algorithms for \textbf{resource-constrained embedded systems} with a strong publication record in international venues. Skilled in \textbf{deep learning, benchmarking frameworks, and model optimization}, with a proven ability to bridge theory and practice in real-world applications. Passionate about advancing efficient AI for the next generation of IoT and cyber-physical systems.
+    }{}
+    
+    \ifdefstring{\summarymode}{academicshort}{
+        Ph.D. candidate at DTU specializing in \textit{Embedded AI and TinyML}, with publications on model optimization and benchmarking for resource-constrained systems.
+    }{}
+    
+    \ifdefstring{\summarymode}{industry}{
+        Machine Learning researcher with expertise in \textbf{TinyML, deep learning, and embedded systems}. Skilled in building and benchmarking \textbf{AI models on microcontrollers} and developing end-to-end automation pipelines. Experienced in supervision, collaboration, and leading technical projects, with a track record of impactful work and publications. Passionate about \textbf{advancing AI at the edge} for predictive maintenance, IoT, and intelligent automation.
+    }{}
+    
+    \ifdefstring{\summarymode}{industryshort}{
+        Machine Learning researcher with expertise in \textbf{TinyML, deep learning, and embedded systems}, developing efficient AI solutions for edge and IoT devices.
+    }{}
+    
+    \ifdefstring{\summarymode}{hybrid}{
+        Ph.D. researcher at DTU working on \textbf{Embedded Artificial Intelligence (eAI)} with a focus on \textbf{TinyML frameworks, benchmarking, and quantization techniques}. Published in peer-reviewed venues and contributed to open-source projects \textbf{bridging deep learning and embedded systems}. Experienced in teaching, collaborative research, and leading technical projects. Motivated to contribute to both academia and industry by making \textbf{AI more efficient, scalable, and deployable on edge devices}.
+    }{}
+    
+    \ifdefstring{\summarymode}{hybridshort}{
+        Researcher in \textbf{Embedded Artificial Intelligence (eAI)} with strong experience in \textit{deep learning, quantization, and benchmarking}, bridging theory and real-world applications.
+    }{}
+\ifdefstring{\summarymode}{none}{}{
+    \end{onecolentry}
+}

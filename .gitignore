@@ -1,0 +1,10 @@
+*
+
+!sections/
+!sections/**
+
+!.gitignore
+!Master CV.tex
+!config.tex
+!user-config.tex
+!README.md
