@@ -25,97 +25,23 @@
 \newcommand{\teachingmode}{expanded}
 
 % ======================================================================
-% SECTION ORDER AND VISIBILITY
-% Control which sections appear and in what order
-% ======================================================================
-
-% Set to true/false to show/hide each section
-\newif\ifshowheader
-\newif\ifshowsummary
-\newif\ifshoweducation
-\newif\ifshowdomainexpertise
-\newif\ifshowskills
-\newif\ifshowpublications
-\newif\ifshowworks
-\newif\ifshowprojects
-\newif\ifshowteaching
-\newif\ifshowachievements
-\newif\ifshowpersonal
-
-% Enable/disable sections (set to true to show, false to hide)
-\showheadertrue
-\showsummarytrue
-\showeducationtrue
-\showdomainexpertisetrue
-\showskillstrue
-\showpublicationstrue
-\showworkstrue
-\showprojectstrue
-\showteachingtrue
-\showachievementstrue
-\showpersonaltrue
-
-% ======================================================================
 % SECTION ORDER
 % Define the order in which sections appear in the CV
 % To change the order, modify the \rendersections command below
 % ======================================================================
 
 \newcommand{\rendersections}{
-    % Header (typically always first)
-    \ifshowheader
-        \input{sections/header.tex}
-    \fi
-    
-    % Summary
-    \ifshowsummary
-        \input{sections/summary.tex}
-    \fi
-    
-    % Education
-    \ifshoweducation
-        \input{sections/education.tex}
-    \fi
-    
-    % Domain Expertise
-    \ifshowdomainexpertise
-        \input{sections/domain-expertise.tex}
-    \fi
-    
-    % Skills
-    \ifshowskills
-        \input{sections/skills.tex}
-    \fi
-    
-    % Publications
-    \ifshowpublications
-        \input{sections/publications.tex}
-    \fi
-    
-    % Work Experience
-    \ifshowworks
-        \input{sections/work-experience.tex}
-    \fi
-    
-    % Projects
-    \ifshowprojects
-        \input{sections/projects.tex}
-    \fi
-    
-    % Teaching Experience
-    \ifshowteaching
-        \input{sections/teaching.tex}
-    \fi
-    
-    % Achievements and Awards
-    \ifshowachievements
-        \input{sections/achievements.tex}
-    \fi
-    
-    % Personal Highlights
-    \ifshowpersonal
-        \input{sections/personal.tex}
-    \fi
+    \input{sections/header.tex}
+    \input{sections/summary.tex}
+    \input{sections/education.tex}
+    \input{sections/domain-expertise.tex}
+    \input{sections/skills.tex}
+    \input{sections/publications.tex}
+    \input{sections/work-experience.tex}
+    \input{sections/projects.tex}
+    \input{sections/teaching.tex}
+    \input{sections/achievements.tex}
+    \input{sections/personal.tex}
 }
 
 % ======================================================================
@@ -123,8 +49,8 @@
 % ======================================================================
 % To change section order, reorder the \input commands in \rendersections
 % 
-% To hide a section, set its toggle to false. For example:
-%   \showprojectsfalse
+% To hide a section, comment that section. For example:
+%   % \input{sections/work-experience.tex}
 %
 % To change display modes, modify the mode commands above. For example:
 %   \renewcommand{\summarymode}{academicshort}
