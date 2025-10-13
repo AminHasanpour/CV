@@ -3,7 +3,8 @@
 % ======================================================================
 
 \section{Selected Projects}
-    
+
+\newcommand{\projectedgemark}{
     \needspace{4\baselineskip}
     \begin{twocolentry}[8cm]{\href{https://github.com/Black3rror/EdgeMark}{GitHub}}
         \textbf{EdgeMark}
@@ -19,9 +20,9 @@
             Developed an automation framework for generating, converting, compiling, and testing ML models on embedded devices. Supports multiple model types, four eAI toolchains (e.g., TFLM), and two microcontrollers (ARM Cortex-M4, Renesas RX65N). Conducted extensive benchmarking of tool performance under varying conditions.
         }
     \end{onecolentry}
+}
 
-    \vspace{0.2 cm}
-
+\newcommand{\projectcavitation}{
     \needspace{3\baselineskip}
     \begin{twocolentry}[8cm]{\href{https://github.com/Black3rror/Cavitation}{GitHub}}
         \textbf{Cavitation Detection in Centrifugal Pumps}
@@ -36,9 +37,9 @@
             Designed and benchmarked SVM and deep learning models for cavitation detection in centrifugal pumps using real industrial data, with optimized implementations for resource-constrained embedded hardware.
         }
     \end{onecolentry}
+}
 
-    \vspace{0.2 cm}
-
+\newcommand{\projectdlcoding}{
     \needspace{3\baselineskip}
     \begin{onecolentry}
         \textbf{Improvement of Deep Learning-Based Coding Algorithms}
@@ -51,11 +52,9 @@
             \\Reduced network parameter count by 40\% without compromising performance. Designed improved architectures for deep learning-based coding.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectcassava}{
     \needspace{4\baselineskip}
     \begin{onecolentry}
         \textbf{Cassava Leaf Disease Classification - Kaggle Competition}
@@ -69,11 +68,9 @@
             \\Developed models with ResNet, Inception-ResNet-v2, VGG16, and EfficientNet. Employed CycleGAN, CGAN, data pipelines, test-time augmentation, and k-fold cross-validation. Achieved the best performance in the class competition.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectmsvan}{
     \needspace{3\baselineskip}
     \begin{onecolentry}
         \textbf{Implementation of MS-VAN for NWPU VHR-10 Object Detection}
@@ -86,11 +83,9 @@
             \\Implemented MS-VAN, an advanced object detection architecture integrating Faster R-CNN, skip-connected autoencoders, and attention modules, evaluated on the NWPU VHR-10 dataset.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectgans}{
     \needspace{4\baselineskip}
     \begin{onecolentry}
         \textbf{Generative Adversarial Networks (GANs) Adventure}
@@ -104,11 +99,9 @@
             \\Explored multiple GAN architectures, including DCGAN, CycleGAN, and LSTM-based GANs. Designed an LSTM-GAN to compose music, trained a DCGAN for MNIST-like image generation, and studied CycleGAN for domain translation.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectcartpole}{
     \needspace{3\baselineskip}
     \begin{onecolentry}
         \textbf{Cartpole Racing with Reinforcement Learning}
@@ -121,11 +114,9 @@
             \\Developed a policy gradient agent to balance a pole and race in a custom-built environment.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectjscc}{
     \needspace{3\baselineskip}
     \begin{onecolentry}
         \textbf{Implementation of Deep JSCC Image Transmission}
@@ -138,11 +129,9 @@
             \\Created an autoencoder-based joint source-channel coding (JSCC) algorithm for image transmission. Outperformed JPEG/JPEG2000 combined with a capacity-achieving channel coding under certain conditions.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectautoencoders}{
     \needspace{3\baselineskip}
     \begin{onecolentry}
         \textbf{Generating Images Using Autoencoders}
@@ -155,11 +144,9 @@
             \\Compared simple autoencoders, VAEs, and disentangled VAEs on MNIST to evaluate their generative performance.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectdragoneye}{
     \needspace{4\baselineskip}
     \begin{twocolentry}[8cm]{\href{https://people.compute.dtu.dk/moam/DragonEye/index.html}{Webpage}}
         \textbf{Design and Fabrication of an IoT Platform}
@@ -175,11 +162,9 @@
             Designed and fabricated an IoT platform with gateway and sensor boards, a backend server for data collection, and an Android application for visualization.
         }
     \end{onecolentry}
+}
 
-
-    \vspace{0.2 cm}
-
-    
+\newcommand{\projectbuynow}{
     \needspace{4\baselineskip}
     \begin{twocolentry}[8cm]{\href{https://buynowstores.com/en}{Website}}
         \textbf{BuyNow - Smart Store (Internship at HardTech)}
@@ -195,3 +180,23 @@
             Internship project on a smart store system at HardTech. Added local login, migrated communication from MQTT to HTTP, developed auto-update and debugging systems, and redesigned the user interface for improved usability.
         }
     \end{onecolentry}
+}
+
+% Render selected projects in order
+\newcommand{\renderproject}[1]{%
+    \ifstrequal{#1}{edgemark}{\projectedgemark\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{cavitation}{\projectcavitation\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{dlcoding}{\projectdlcoding\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{cassava}{\projectcassava\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{msvan}{\projectmsvan\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{gans}{\projectgans\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{cartpole}{\projectcartpole\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{jscc}{\projectjscc\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{autoencoders}{\projectautoencoders\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{dragoneye}{\projectdragoneye\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{buynow}{\projectbuynow\vspace{0.2 cm}}{}%
+}
+
+% Loop through selected projects using etoolbox
+\renewcommand*{\do}[1]{\renderproject{#1}}%
+\expandafter\docsvlist\expandafter{\selectedprojects}

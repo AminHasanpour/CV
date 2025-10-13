@@ -29,17 +29,41 @@ pdflatex "Master CV.tex"
 
 Edit `user-config.tex` to control how sections appear.
 
-### Section Order and Visibility
+### Section Selection
 
-Reorder or hide sections by editing the `\rendersections` command in `user-config.tex`: rearrange the `\input{sections/...}` commands to change their order, or comment out a line to hide a section.
+Define which sections to include and their order in `user-config.tex`:
 
-## 🧩 Adding New Sections
+```latex
+\newcommand{\rendersections}{
+    \input{sections/header.tex}
+    \input{sections/projects.tex}
+    \input{sections/education.tex}
+}
+```
+
+### Project Selection
+
+Control which projects appear in the "Selected Projects" section and their order through `user-config.tex`:
+
+```latex
+\newcommand{\selectedprojects}{
+    edgemark,
+    cavitation,
+    dlcoding
+}
+```
+
+## 🌱 Adding New Sections
 
 1. Create a new file in `sections/` (e.g., `sections/new-section.tex`)
-2. In `user-config.tex`, add the following to `\rendersections`:
-    ```latex
-    \input{sections/new-section.tex}
-    ```
+2. In `user-config.tex`, add a new `\input` line to `\rendersections`
+
+## 🧩 Adding New Projects
+
+1. In `sections/projects.tex`:
+    - Add the project content inside `\newcommand{\projectnewproject}{...}` following the existing format.
+    - Register it in `\renderproject` inside a `\ifstrequal` line.
+2. In `user-config.tex`, add the project name to the `\selectedprojects` list.
 
 ## 📄 License
 

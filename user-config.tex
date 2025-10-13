@@ -8,19 +8,15 @@
 % Control how each section is displayed
 % ======================================================================
 
-% Summary mode
 % Options: "none", "academic", "academicshort", "industry", "industryshort", "hybrid", "hybridshort"
 \newcommand{\summarymode}{hybrid}
 
-% Skills mode
 % Options: "compact", "expanded"
 \newcommand{\skillsmode}{compact}
 
-% Projects mode
 % Options: "text", "bullet"
 \newcommand{\projectmode}{bullet}
 
-% Teaching mode
 % Options: "supercompact", "compact", "expanded"
 \newcommand{\teachingmode}{expanded}
 
@@ -45,6 +41,25 @@
 }
 
 % ======================================================================
+% SELECTED PROJECTS CONFIGURATION
+% Define which projects to show and their order
+% ======================================================================
+
+\newcommand{\selectedprojects}{
+    edgemark,
+    cavitation,
+    dlcoding,
+    cassava,
+    msvan,
+    gans,
+    cartpole,
+    jscc,
+    autoencoders,
+    dragoneye,
+    buynow,
+}
+
+% ======================================================================
 % USAGE EXAMPLES
 % ======================================================================
 % To change section order, reorder the \input commands in \rendersections
@@ -55,4 +70,7 @@
 % To change display modes, modify the mode commands above. For example:
 %   \renewcommand{\summarymode}{academicshort}
 %   \renewcommand{\skillsmode}{expanded}
+%
+% To customize which projects appear, modify \selectedprojects above.
+% You can reorder or remove projects as needed.
 % ======================================================================
