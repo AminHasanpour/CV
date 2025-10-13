@@ -36,6 +36,7 @@
 \newif\ifshowdomainexpertise
 \newif\ifshowskills
 \newif\ifshowpublications
+\newif\ifshowworks
 \newif\ifshowprojects
 \newif\ifshowteaching
 \newif\ifshowachievements
@@ -48,6 +49,7 @@
 \showdomainexpertisetrue
 \showskillstrue
 \showpublicationstrue
+\showworkstrue
 \showprojectstrue
 \showteachingtrue
 \showachievementstrue
@@ -88,6 +90,11 @@
     % Publications
     \ifshowpublications
         \input{sections/publications.tex}
+    \fi
+    
+    % Work Experience
+    \ifshowworks
+        \input{sections/work-experience.tex}
     \fi
     
     % Projects
