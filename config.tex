@@ -45,6 +45,7 @@
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
 \usepackage{etoolbox} % provides \patchcmd and related patching macros used below
 \usepackage{hwemoji} % for using emojis
+\usepackage{xparse} % for advanced command definitions
 
 % ======================================================================
 % FONT CONFIGURATION
@@ -77,13 +78,6 @@
 \setlength{\parindent}{0pt} % no indentation
 \setlength{\topskip}{0pt} % no top skip
 \setlength{\columnsep}{0.15cm} % set column separation
-
-% ======================================================================
-% CUSTOM LENGTH DEFINITIONS
-% ======================================================================
-
-\newlength{\twocolrightwidth}
-\setlength{\twocolrightwidth}{4.5cm} % set default length for twocolentry
 
 % ======================================================================
 % FOOTER CONFIGURATION
@@ -169,49 +163,6 @@
     \end{adjustwidth}
 }
 
-% Two column entry
-\newenvironment{twocolentry}[2][]{
-    \onecolentry
-    % Use optional width if given, else default
-    \ifx&#1&%
-        \setlength{\twocolrightwidth}{4.5cm}% default
-    \else
-        \setlength{\twocolrightwidth}{#1}% user-specified
-    \fi
-    \def\secondColumn{#2}
-    \setcolumnwidth{\fill, \twocolrightwidth}
-    \begin{paracol}{2}
-}{
-    \switchcolumn \raggedleft \secondColumn
-    \end{paracol}
-    \endonecolentry
-}
-
-% Two column entry with left fixed
-\newenvironment{twocolentryleftfixed}[1]{
-    \onecolentry
-    \def\firstColumn{#1}
-    \setcolumnwidth{2.5cm, \fill}
-    \begin{paracol}{2}
-    {\raggedright \firstColumn} \switchcolumn
-}{
-    \end{paracol}
-    \endonecolentry
-}
-
-% Three column entry
-\newenvironment{threecolentry}[3][]{
-    \onecolentry
-    \def\thirdColumn{#3}
-    \setcolumnwidth{1.2 cm, \fill, 4.5 cm}
-    \begin{paracol}{3}
-    {\raggedright #2} \switchcolumn
-}{
-    \switchcolumn \raggedleft \thirdColumn
-    \end{paracol}
-    \endonecolentry
-}
-
 % Header environment
 \newenvironment{header}{
     \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
@@ -248,3 +199,156 @@
 }
 \newsavebox\ANDbox
 \sbox\ANDbox{}
+
+% ======================================================================
+% MULTI-COLUMN ENTRY COMMAND
+% ======================================================================
+% A flexible command for creating entries with arbitrary number of columns
+% Usage: \multicolentry{<column_specs>}{<content_1>}{<content_2>}...{<content_n>}
+% where <column_specs> is comma-separated list like "fill,4.5cm" or "2cm,fill,3cm"
+% Use "fill" or "*" for variable-width columns that fill remaining space
+
+\ExplSyntaxOn
+
+% Helper to count columns in spec
+\seq_new:N \l_multicolentry_spec_seq
+\int_new:N \l_multicolentry_numcols_int
+\tl_new:N \l_multicolentry_spec_tl
+
+% Parse column spec and convert to paracol format
+\cs_new:Npn \__multicolentry_parse_spec:n #1
+{
+    \seq_set_split:Nnn \l_multicolentry_spec_seq { , } { #1 }
+    \int_set:Nn \l_multicolentry_numcols_int { \seq_count:N \l_multicolentry_spec_seq }
+    
+    % Convert spec: replace "fill" or "*" with "\fill"
+    \tl_clear:N \l_multicolentry_spec_tl
+    \seq_map_inline:Nn \l_multicolentry_spec_seq
+    {
+        \tl_if_empty:NF \l_multicolentry_spec_tl
+        {
+            \tl_put_right:Nn \l_multicolentry_spec_tl { , }
+        }
+        \str_if_eq:nnTF { ##1 } { fill }
+        {
+            \tl_put_right:Nn \l_multicolentry_spec_tl { \fill }
+        }
+        {
+            \str_if_eq:nnTF { ##1 } { * }
+            {
+                \tl_put_right:Nn \l_multicolentry_spec_tl { \fill }
+            }
+            {
+                \tl_put_right:Nn \l_multicolentry_spec_tl { ##1 }
+            }
+        }
+    }
+}
+
+% Main multicolentry command
+\NewDocumentCommand{\multicolentry}{ m }
+{
+    \__multicolentry_parse_spec:n { #1 }
+    \__multicolentry_build:n { \int_use:N \l_multicolentry_numcols_int }
+}
+
+% Build the entry by collecting remaining arguments
+\cs_new:Npn \__multicolentry_build:n #1
+{
+    \int_compare:nNnTF { #1 } = { 2 }
+    {
+        \__multicolentry_two:nn
+    }
+    {
+        \int_compare:nNnTF { #1 } = { 3 }
+        {
+            \__multicolentry_three:nnn
+        }
+        {
+            \int_compare:nNnTF { #1 } = { 4 }
+            {
+                \__multicolentry_four:nnnn
+            }
+            {
+                \int_compare:nNnTF { #1 } = { 5 }
+                {
+                    \__multicolentry_five:nnnnn
+                }
+                {
+                    \msg_error:nn { multicolentry } { unsupported-columns }
+                }
+            }
+        }
+    }
+}
+
+% Two column version
+\NewDocumentCommand{\__multicolentry_two:nn}{ +m +m }
+{
+    \begin{onecolentry}
+        \exp_args:NV \setcolumnwidth \l_multicolentry_spec_tl
+        \begin{paracol}{2}
+            #1
+            \switchcolumn
+            #2
+        \end{paracol}
+    \end{onecolentry}
+}
+
+% Three column version
+\NewDocumentCommand{\__multicolentry_three:nnn}{ +m +m +m }
+{
+    \begin{onecolentry}
+        \exp_args:NV \setcolumnwidth \l_multicolentry_spec_tl
+        \begin{paracol}{3}
+            #1
+            \switchcolumn
+            #2
+            \switchcolumn
+            #3
+        \end{paracol}
+    \end{onecolentry}
+}
+
+% Four column version
+\NewDocumentCommand{\__multicolentry_four:nnnn}{ +m +m +m +m }
+{
+    \begin{onecolentry}
+        \exp_args:NV \setcolumnwidth \l_multicolentry_spec_tl
+        \begin{paracol}{4}
+            #1
+            \switchcolumn
+            #2
+            \switchcolumn
+            #3
+            \switchcolumn
+            #4
+        \end{paracol}
+    \end{onecolentry}
+}
+
+% Five column version
+\NewDocumentCommand{\__multicolentry_five:nnnnn}{ +m +m +m +m +m }
+{
+    \begin{onecolentry}
+        \exp_args:NV \setcolumnwidth \l_multicolentry_spec_tl
+        \begin{paracol}{5}
+            #1
+            \switchcolumn
+            #2
+            \switchcolumn
+            #3
+            \switchcolumn
+            #4
+            \switchcolumn
+            #5
+        \end{paracol}
+    \end{onecolentry}
+}
+
+\msg_new:nnn { multicolentry } { unsupported-columns }
+{
+    Unsupported~number~of~columns.~Currently~supports~2-5~columns.
+}
+
+\ExplSyntaxOff
