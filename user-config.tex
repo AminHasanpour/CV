@@ -9,19 +9,19 @@
 % ======================================================================
 
 % Options: "none", "academic", "academicshort", "industry", "industryshort", "industryml", "hybrid", "hybridshort"
-\newcommand{\summarymode}{hybrid}
+\newcommand{\summarymode}{industryml}
 
 % Options: "compact", "expanded"
 \newcommand{\skillsmode}{compact}
 
 % Options: "compact", "expanded"
-\newcommand{\publicationsmode}{expanded}
+\newcommand{\publicationsmode}{compact}
 
 % Options: "text", "bullet"
 \newcommand{\projectmode}{bullet}
 
 % Options: "supercompact", "compact", "expanded"
-\newcommand{\teachingmode}{expanded}
+\newcommand{\teachingmode}{supercompact}
 
 % ======================================================================
 % SECTION ORDER
@@ -32,12 +32,12 @@
 \newcommand{\rendersections}{
     \input{sections/header.tex}
     \input{sections/summary.tex}
-    \input{sections/education.tex}
+    \input{sections/work-experience.tex}
     \input{sections/domain-expertise.tex}
     \input{sections/skills.tex}
-    \input{sections/publications.tex}
-    \input{sections/work-experience.tex}
     \input{sections/projects.tex}
+    \input{sections/education.tex}
+    \input{sections/publications.tex}
     \input{sections/teaching.tex}
     \input{sections/achievements.tex}
     \input{sections/personal.tex}
@@ -50,16 +50,17 @@
 
 \newcommand{\selectedprojects}{
     edgemark,
-    cavitation,
-    dlcoding,
+    % torchdep,
+    % dlcoding,
     cassava,
-    msvan,
-    gans,
-    cartpole,
-    jscc,
-    autoencoders,
-    dragoneye,
-    buynow,
+    % msvan,
+    cavitation,
+    % gans,
+    % cartpole,
+    % jscc,
+    % autoencoders,
+    % dragoneye,
+    % buynow,
 }
 
 % ======================================================================

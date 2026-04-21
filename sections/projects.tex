@@ -22,6 +22,22 @@
     \end{onecolentry}
 }
 
+\newcommand{\projecttorchdep}{
+    \needspace{3\baselineskip}
+    \begin{onecolentry}
+        \textbf{TorchDep}
+        \ifdefstring{\projectmode}{bullet}{
+            \begin{highlights}
+                \item Developed a full-featured system to optimize and deploy PyTorch models on various embedded devices.
+                \item Designed a modular architecture to ensure scalability, maintainability, and seamless hardware integration.
+                \item Applied best coding practices, CI/CD pipelines, and rigorous testing to maintain code quality and reliability.
+            \end{highlights}
+        }{
+            \\Developed a comprehensive system to optimize and deploy PyTorch models on embedded devices. Designed a modular architecture for scalability, maintainability, and seamless hardware integration. Implemented best coding practices, CI/CD pipelines, and rigorous testing to ensure reliability and quality.
+        }
+    \end{onecolentry}
+}
+
 \newcommand{\projectcavitation}{
     \needspace{3\baselineskip}
     \multicolentry{*, 8cm}
@@ -185,6 +201,7 @@
 % Render selected projects in order
 \newcommand{\renderproject}[1]{%
     \ifstrequal{#1}{edgemark}{\projectedgemark\vspace{0.2 cm}}{}%
+    \ifstrequal{#1}{torchdep}{\projecttorchdep\vspace{0.2 cm}}{}%
     \ifstrequal{#1}{cavitation}{\projectcavitation\vspace{0.2 cm}}{}%
     \ifstrequal{#1}{dlcoding}{\projectdlcoding\vspace{0.2 cm}}{}%
     \ifstrequal{#1}{cassava}{\projectcassava\vspace{0.2 cm}}{}%
